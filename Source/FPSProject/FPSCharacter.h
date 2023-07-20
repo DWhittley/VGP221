@@ -44,6 +44,12 @@ public:
 	UFUNCTION()
 		void StopJump();
 
+	// Sets shooting flag when Lmouse pressed
+	UFUNCTION()
+		void Fire();
+
+	// Sets shooting flag when Lmouse released
+
 	// FPS camera.
 	UPROPERTY(VisibleAnywhere)
 		UCameraComponent* FPSCameraComponent;

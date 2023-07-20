@@ -77,11 +77,14 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	// Set up "action" bindings.
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::StartJump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &AFPSCharacter::StopJump);
+	PlayerInputComponent->BindAction("Shooting", IE_Released, this, &AFPSCharacter::Fire);
 
 }
 
 void AFPSCharacter::MoveForward(float Value)
 {
+	// 0 to 1
+	// Normalized input (scaled)
 	// Find out which way is "forward" and record that the player wants to move that way.
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::X);
 	AddMovementInput(Direction, Value);
@@ -89,6 +92,8 @@ void AFPSCharacter::MoveForward(float Value)
 
 void AFPSCharacter::MoveRight(float Value)
 {
+	// 0 to 1
+	// Normalized input (scaled)
 	// Find out which way is "right" and record that the player wants to move that way.
 	FVector Direction = FRotationMatrix(Controller->GetControlRotation()).GetScaledAxis(EAxis::Y);
 	AddMovementInput(Direction, Value);
@@ -102,5 +107,14 @@ void AFPSCharacter::StartJump()
 void AFPSCharacter::StopJump()
 {
 	bPressedJump = false;
+}
+
+void AFPSCharacter::Fire()
+{
+	check(GEngine != nullptr);
+
+	// Display a debug message for five seconds. 
+	// The -1 "Key" value argument prevents the message from being updated or refreshed.
+	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, TEXT("fire is being pressed!"));
 }
 
