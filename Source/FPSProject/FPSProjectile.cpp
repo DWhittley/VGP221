@@ -37,7 +37,7 @@ AFPSProjectile::AFPSProjectile()
         ProjectileMovementComponent->bRotationFollowsVelocity = true;
         ProjectileMovementComponent->bShouldBounce = true;
         ProjectileMovementComponent->Bounciness = 0.3f;
-        ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
+        ProjectileMovementComponent->ProjectileGravityScale = 3.0f;
     }
 
     if (!ProjectileMeshComponent)
